@@ -1,8 +1,11 @@
 package tasks;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Tasks {
     static String[][] schedule = new String[7][2];
-    final String[] week = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    final Week[] week = Week.values();
     public Tasks(String placeholder) {
         initSchedule(placeholder);
     }
@@ -10,8 +13,11 @@ public class Tasks {
     private void initSchedule(String initialValue) {
         int idx = 0;
 
+        String[] days = new String[7];
+        convertWeekToStringArr(week, days);
+
         for (String[] task : schedule) {
-            task[0] = week[idx];
+            task[0] = days[idx];
             task[1] = initialValue;
             idx++;
         }
@@ -21,8 +27,8 @@ public class Tasks {
         int idx = 0;
         boolean exist = false;
 
-        for (String day : week) {
-            if (day.equals(dayOfWeek)) {
+        for (Week day : week) {
+            if (day.equals(Week.valueOf(dayOfWeek))) {
                 schedule[idx][1] = taskText;
                 exist = true;
             }
@@ -51,6 +57,15 @@ public class Tasks {
         charArr[0] = Character.toUpperCase(charArr[0]);
 
         return String.copyValueOf(charArr);
+    }
+
+
+    private void convertWeekToStringArr(Week[] week, String[] array) {
+        int idx = 0;
+        for (Week day: week) {
+            array[idx] = day.day;
+            idx++;
+        }
     }
 
 
