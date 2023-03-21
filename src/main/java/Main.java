@@ -1,25 +1,10 @@
 import family.*;
 public class Main {
     public static void main(String[] args) {
-        enum Foo {
-            Bar() {
-                void baz() {
-                    System.out.println("FOO BAR");
-                }
-            };
+        Human mrShevchenko = new Human();
+        Human mrsShevchenko = new Human();
 
-            Foo () {
-
-            }
-
-        }
-
-        Foo foo = Foo.Bar;
-
-        foo
-
-        Foo.Bar.baz()
-
+        Family shevchenkoFamily = new Family(mrShevchenko, mrsShevchenko);
     }
 
 
