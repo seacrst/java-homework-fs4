@@ -1,17 +1,21 @@
 package family;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Family {
 
     private Human[] family;
     private Human father;
     private Human mother;
-    private Human[] children = new Human[] {};
+    private List children;
 
     public Family (Human father, Human mother) {
         create(father, mother);
+        children = new ArrayList<Human>();
     }
 
     private void create(Human father, Human mother) {
@@ -28,42 +32,20 @@ public class Family {
     public void addChild(Human child) {
         child.setFamilyRelative(this);
 
-        this.family = Arrays.copyOf(this.family, this.family.length + 1);
-        this.family[this.family.length - 1] = child;
-
-        this.children = Arrays.copyOf(this.children, this.children.length + 1);
-
-        this.children[this.children.length - 1] = child;
+        this.children.add(child);
     }
 
     public boolean deleteChild(Human child) {
-        int idx = 0;
-        boolean result = false;
-        for (Human searchChild: this.children) {
-            if (searchChild.hashCode() == child.hashCode()) {
-                result = deleteChild(idx);
-            }
-            idx++;
-        }
+        int currentSize = this.children.size();
+        int nextSize = (int) Stream.of(this.children).filter(c -> !c.equals(child)).count();
 
-        return result;
+        return currentSize - nextSize == 1;
     }
 
     public boolean deleteChild(int index) {
-        if (this.children.length == 0) return false;
+        if (this.children.isEmpty()) return false;
 
-        final int prevLength = this.children.length;
-
-        for (Human child: this.children) {
-            if (child.equals(this.children[index])) {
-                this.children[index] = null;
-                break;
-            }
-        }
-
-        this.children = (Human[]) Arrays.stream(this.children).filter(child -> child != null).toArray();
-
-        return prevLength != this.children.length;
+        this.children.remove(index);
     }
 
     public int countFamily() {

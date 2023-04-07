@@ -1,13 +1,15 @@
 package family;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pet {
     private String species;
     private String nickname;
     private int age;
     private int trickLevel;
-    private String[] habits;
+    private Set<String> habits;
 
     public Pet() { }
 
@@ -20,7 +22,8 @@ public class Pet {
         this(species, nickname);
         this.age = age;
         this.trickLevel = trickLevel;
-        this.habits = habits;
+
+        this.habits = new HashSet<String>(Arrays.asList(habits));
     }
 
     public void eat() {
@@ -55,6 +58,6 @@ public class Pet {
     public String toString() {
         return String.format(
                 "%s{nickname='%s', age=%d, trickLevel=%d habits=", species, nickname, age, trickLevel
-        ) + Arrays.toString(habits) + "}";
+        ) + this.habits.toString() + "}";
     }
 }

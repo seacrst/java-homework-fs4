@@ -1,5 +1,8 @@
 package family;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Human implements Relative {
     private String name;
     private String surname;
@@ -8,7 +11,7 @@ public class Human implements Relative {
     private Pet pet;
     private Human mother;
     private Human father;
-    private String[][] schedule;
+    private Map<String, String> schedule = new HashMap<>();
 
     private Family relative;
 
@@ -25,11 +28,10 @@ public class Human implements Relative {
         this.father = father;
     }
 
-    public Human(String name, String surname, int year, int iq, Pet pet, Human mother, Human father, String[][] schedule) {
+    public Human(String name, String surname, int year, int iq, Pet pet, Human mother, Human father) {
         this(name, surname, year, father, mother);
         this.iq = iq;
         this.pet = pet;
-        this.schedule = schedule;
     }
 
 
