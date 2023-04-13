@@ -110,7 +110,11 @@ public class Family {
 
     @Override
     public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
+        if (obj instanceof Human) {
+            return this.father.hashCode() == obj.hashCode();
+        }
+
+        return false;
     }
 
     @Override

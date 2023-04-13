@@ -30,11 +30,14 @@ public class Human {
     }
 
     public Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, String[][] schedule) {
-        this(name, surname, year, mother, father);
+        this(name, surname, year, father, mother);
         setIq(iq);
         this.pet = pet;
         this.schedule = schedule;
     }
+
+    public String getName() {return name;}
+    public String getSurname() {return surname;}
 
 
 
@@ -123,9 +126,9 @@ public class Human {
         return self;
     }
 
-    static String getHumanFullNameAsString(Human h) {
+    public static String getHumanFullNameAsString(Human h) {
         if (h != null) {
-            return String.format("name='%s' surname='%s'", h.name, h.surname);
+            return String.format("name='%s' surname='%s'", h.getName(), h.getSurname());
         }
 
         return "name='_' surname='_'";

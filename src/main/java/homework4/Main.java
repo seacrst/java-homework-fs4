@@ -8,7 +8,7 @@ public class Main {
         String[][] schedule = {{"monday", "foo"}, {"friday", "bar"}};
 
         Pet dog = new Pet("dog", "Spike");
-        Pet cat = new Pet("cat", "Spooky");
+        Pet cat = new Pet("cat", "Spooky", 2, 30, new String[] {"sleep"});
 
         Human father = new Human("John", "Doe", 1980);
         Human mother = new Human("Jane", "Doe", 1982);
@@ -29,16 +29,38 @@ public class Main {
         System.out.println();
 
         boolean res1 = family.deleteChild(child);
-        boolean res2 = family.deleteChild(1);
+        boolean res2 = family.deleteChild(child);
+        boolean res3 = family.deleteChild(1);
 
-        System.out.println(res1);
+
+        System.out.print("DELETED ==> ");
+        System.out.print(res1);
+        System.out.println();
         System.out.println(family);
         System.out.println();
-        System.out.println(res2);
+
+
+        System.out.print("DELETED ==> ");
+        System.out.print(res2);
+        System.out.println();
         System.out.println(family);
+        System.out.println();
+
+        System.out.print("DELETED ==> ");
+        System.out.print(res3);
+        System.out.println();
+        System.out.println(family);
+        System.out.println();
 
 
         System.out.print("FAMILY COUNT ==> ");
         System.out.print(family.countFamily());
+
+        System.out.println("\n=====================\nFAMILY 2");
+        Human july = new Human("July", "Doe", 1992);
+        Family family2 = new Family(child, july);
+        System.out.println(family2);
+        System.out.println("Does FAMILY 1 equals FAMILY 2 ?");
+        System.out.println(family.equals(family2));
     }
 }
