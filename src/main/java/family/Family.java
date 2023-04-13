@@ -1,7 +1,4 @@
-package homework4;
-
-import entities.Human;
-import entities.Pet;
+package family;
 
 import java.util.Arrays;
 import java.util.Objects;

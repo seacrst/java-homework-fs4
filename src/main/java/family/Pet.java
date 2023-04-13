@@ -1,6 +1,4 @@
-package entities;
-
-import homework4.Family;
+package family;
 
 import java.util.Arrays;
 

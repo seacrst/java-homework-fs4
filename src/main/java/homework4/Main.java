@@ -1,8 +1,5 @@
 package homework4;
-
-import entities.Human;
-import entities.Pet;
-
+import family.*;
 public class Main {
     public static void main(String[] args) {
         String[][] schedule = {{"monday", "foo"}, {"friday", "bar"}};
