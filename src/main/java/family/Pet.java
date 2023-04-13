@@ -1,20 +1,21 @@
 package family;
 
 import java.util.Arrays;
+import entities.*;
 
 public class Pet {
-    private String species;
+    private Species species;
     private String nickname;
     private int age = 1;
     private int trickLevel = 1;
     private String[] habits = new String[] {};
     private Family family;
 
-    public Pet(String species, String nickname) {
+    public Pet(Species species, String nickname) {
         this.species = species;
         this.nickname = nickname;
     }
-    public Pet(String species, String nickname, int age, int trickLevel, String[] habits) {
+    public Pet(Species species, String nickname, int age, int trickLevel, String[] habits) {
         this(species, nickname);
         this.age = age;
         this.trickLevel = trickLevel;
@@ -42,7 +43,7 @@ public class Pet {
         return nickname;
     }
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
@@ -69,6 +70,10 @@ public class Pet {
     }
 
 
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println(this);
+    }
     @Override
     public String toString() {
         return String.format(

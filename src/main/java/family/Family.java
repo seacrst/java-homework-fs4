@@ -58,6 +58,8 @@ public class Family {
     public boolean deleteChild(int index) {
         Human child = new Human();
 
+        if (index >= children.length) return  false;
+
         for (int i = 0; i < children.length; i++) {
             if (i == index) {
                 child = children[index];
@@ -70,13 +72,13 @@ public class Family {
 
     public int countFamily() {
         int count = 0;
-        if (father.getFamily().equals(this)) {
+        if (father.getFamily().toString().equals(this.toString())) {
             count++;
             if (father.getPet() != null && father.getPet().getFamily().equals(this)) {
                 count++;
             }
         }
-        if (mother.getFamily().equals(this)) {
+        if (mother.getFamily().toString().equals(this.toString())) {
             count++;
             if (mother.getPet() != null && mother.getPet().getFamily().equals(this)) {
                 count++;
@@ -84,7 +86,7 @@ public class Family {
         }
 
         for (Human h: children) {
-            if (h.getFamily().equals(this)) {
+            if (h.getFamily().toString().equals(this.toString())) {
                 count++;
                 if (h.getPet() != null && h.getPet().getFamily().equals(this)) {
                     count++;
@@ -93,6 +95,11 @@ public class Family {
         }
 
         return count;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println(this);
     }
 
     @Override

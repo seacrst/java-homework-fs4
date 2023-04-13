@@ -1,5 +1,7 @@
 package family;
 
+import entities.Schedule;
+
 import java.util.Arrays;
 
 public class Human {
@@ -10,7 +12,7 @@ public class Human {
     private Pet pet;
     private Human mother;
     private Human father;
-    private String[][] schedule = {};
+    private Schedule[] schedule = {};
     private Family family;
 
 
@@ -28,7 +30,7 @@ public class Human {
         this.father = father;
     }
 
-    public Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, String[][] schedule) {
+    public Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Schedule[] schedule) {
         this(name, surname, year, father, mother);
         setIq(iq);
         this.pet = pet;
@@ -89,7 +91,7 @@ public class Human {
         String[] strArr = new String[schedule.length];
 
         for (int i = 0; i < schedule.length; i++) {
-            strArr[i] = String.format("%s: %s", schedule[i][0], schedule[i][1]);
+            strArr[i] = String.format("%s: %s", schedule[i].day(), schedule[i].task());
         }
 
         return  strArr;
@@ -103,6 +105,11 @@ public class Human {
                 Human.getHumanFullNameAsString(mother),
                 pet == null ? "_" : pet.toString(), Arrays.toString(getFormatSchedule())
         );
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println(this);
     }
 
     @Override
