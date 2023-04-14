@@ -4,7 +4,7 @@ import entities.Schedule;
 
 import java.util.Arrays;
 
-public class Human {
+public abstract class Human {
     private String name;
     private String surname;
     private int year;
@@ -16,21 +16,21 @@ public class Human {
     private Family family;
 
 
-    public Human() {}
+    protected Human() {}
 
-    public Human(String name, String surname, int year) {
+    protected Human(String name, String surname, int year) {
         this.name = name;
         this.surname = surname;
         setBirthYear(year);
     }
 
-    public Human(String name, String surname, int year, Human father, Human mother) {
+    protected Human(String name, String surname, int year, Human father, Human mother) {
         this(name, surname, year);
         this.mother= mother;
         this.father = father;
     }
 
-    public Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Schedule[] schedule) {
+    protected Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Schedule[] schedule) {
         this(name, surname, year, father, mother);
         setIq(iq);
         this.pet = pet;
@@ -74,9 +74,7 @@ public class Human {
 
     public Pet getPet() { return pet; }
 
-    public void greetPet() {
-        System.out.printf("Привіт, %s", this.pet.getNickname());
-    }
+    public abstract void greetPet();
 
     public void describePet() {
         String details = String.format("""

@@ -3,20 +3,20 @@ package family;
 import java.util.Arrays;
 import entities.*;
 
-public class Pet {
-    private Species species;
+public abstract class Pet {
+    protected Species species;
     private String nickname;
     private int age = 1;
     private int trickLevel = 1;
     private String[] habits = new String[] {};
     private Family family;
 
-    public Pet(Species species, String nickname) {
-        this.species = species;
+    protected Pet(String nickname) {
+        this.species = Species.UNKNOWN;
         this.nickname = nickname;
     }
-    public Pet(Species species, String nickname, int age, int trickLevel, String[] habits) {
-        this(species, nickname);
+    protected Pet(String nickname, int age, int trickLevel, String[] habits) {
+        this(nickname);
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
@@ -61,13 +61,7 @@ public class Pet {
         System.out.println("Я їм!");
     }
 
-    public void respond() {
-        System.out.printf("Привіт, господар! Я - %s. Я скучив", nickname);
-    }
-
-    public void foul() {
-        System.out.println("Потрібно замести сліди...");
-    }
+    public abstract void respond();
 
 
     @Override
