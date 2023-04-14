@@ -1,8 +1,11 @@
 package family;
 
-import entities.Schedule;
+import entities.Tasks;
+import entities.Week;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Human {
     private String name;
@@ -12,7 +15,7 @@ public abstract class Human {
     private Pet pet;
     private Human mother;
     private Human father;
-    private Schedule[] schedule = {};
+    private Map<Week, Tasks> schedule = new HashMap<Week, Tasks>();
     private Family family;
 
 
@@ -30,9 +33,10 @@ public abstract class Human {
         this.father = father;
     }
 
-    protected Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Schedule[] schedule) {
+    protected Human(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Map<Week, Tasks> schedule) {
         this(name, surname, year, father, mother);
         setIq(iq);
+
         this.pet = pet;
         this.schedule = schedule;
     }
@@ -86,10 +90,12 @@ public abstract class Human {
     }
 
     public String[] getFormatSchedule() {
-        String[] strArr = new String[schedule.length];
+        String[] strArr = new String[schedule.size()];
 
-        for (int i = 0; i < schedule.length; i++) {
-            strArr[i] = String.format("%s: %s", schedule[i].day(), schedule[i].task());
+        int i = 0;
+        for (var key: schedule.keySet()) {
+            strArr[i] = String.format("%s: %s", key, schedule.get(key));
+            i++;
         }
 
         return  strArr;

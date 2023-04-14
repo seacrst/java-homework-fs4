@@ -1,21 +1,25 @@
 package family;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import entities.*;
 
 public abstract class Pet {
     protected Species species;
-    private String nickname;
-    private int age = 1;
-    private int trickLevel = 1;
-    private String[] habits = new String[] {};
-    private Family family;
+    protected String nickname;
+    protected int age = 1;
+    protected int trickLevel = 1;
+    protected Set<String> habits = new HashSet<String>();
+
+    protected Family family;
 
     protected Pet(String nickname) {
         this.species = Species.UNKNOWN;
         this.nickname = nickname;
     }
-    protected Pet(String nickname, int age, int trickLevel, String[] habits) {
+    protected Pet(String nickname, int age, int trickLevel, Set<String> habits) {
         this(nickname);
         this.age = age;
         this.trickLevel = trickLevel;
@@ -72,6 +76,6 @@ public abstract class Pet {
     public String toString() {
         return String.format(
                 "%s{nickname='%s', age=%d, trickLevel=%d habits=", species, nickname, age, trickLevel
-        ) + Arrays.toString(this.habits) + "}";
+        ) + Arrays.toString(this.habits.toArray()) + "}";
     }
 }

@@ -2,12 +2,14 @@ package family;
 
 import entities.Species;
 
+import java.util.Set;
+
 public class RoboCat extends Pet implements Disgusting {
     public RoboCat(String name) {
         super(name);
     }
-    public RoboCat(String name, int age, int trickLevel, String[] habits) {
-        super(name);
+    public RoboCat(String name, int age, int trickLevel, Set<String> habits) {
+        super(name, age, trickLevel, habits);
     }
     @Override
     public void respond() {

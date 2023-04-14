@@ -1,6 +1,10 @@
 package family;
 
 import entities.Schedule;
+import entities.Tasks;
+import entities.Week;
+
+import java.util.Map;
 
 public final class Man extends Human {
 
@@ -16,7 +20,7 @@ public final class Man extends Human {
         super(name, surname, year, father, mother);
     }
 
-    public Man(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Schedule[] schedule) {
+    public Man(String name, String surname, int year, Human father, Human mother, int iq, Pet pet, Map<Week, Tasks> schedule) {
         super(name, surname, year, father, mother, iq, pet, schedule);
     }
 

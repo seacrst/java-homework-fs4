@@ -1,14 +1,14 @@
 package family;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.Stream;
+import java.util.List;
 
 public class Family {
 
     private final Human mother;
     private final Human father;
-    private Human[] children = {};
+    private List<Human> children;
     private Pet pet;
 
     public Family (Human father, Human mother) {
@@ -17,57 +17,32 @@ public class Family {
 
         this.father.setFamily(this);
         this.mother.setFamily(this);
-        this.children = new Human[] {};
+        this.children = new ArrayList<>();
     }
 
     public Human getMother() { return mother; }
     public Human getFather() { return father; }
-    public Human[] getChildren() { return children; }
+    public List<Human> getChildren() { return children; }
     public Pet getPet() { return pet; }
 
     public void addChild(Human child) {
         child.setFamily(this);
-        this.children = Arrays.copyOf(this.children, this.children.length + 1);
-        this.children[this.children.length - 1] = child;
+
+        children.add(child);
     }
 
     public boolean deleteChild(Human child) {
-        int len = children.length;
+        children = children.stream().filter(c -> !c.equals(child)).toList();
 
-        Human[] prevChildren = Arrays.copyOf(children, len);
-
-        if (len == 0) return false;
-        if (len == 1 && child.equals(children[0])) {
-            children = new Human[]{};
-            return false;
-        }
-
-        Human[] humans = new Human[len];
-
-        for (int i = 0; i < len; i++) {
-            if (!child.equals(children[i])) {
-                humans[i] = children[i];
-            }
-        }
-
-        children = Stream.of(humans).filter(Objects::nonNull).toArray(Human[]::new);
-
-        return !Arrays.deepEquals(children, prevChildren);
+        return !children.contains(child);
     }
 
     public boolean deleteChild(int index) {
-        Human child = new Human();
+        if (index >= children.size()) return false;
 
-        if (index >= children.length) return  false;
+        Human h = children.remove(index);
 
-        for (int i = 0; i < children.length; i++) {
-            if (i == index) {
-                child = children[index];
-                break;
-            }
-        }
-
-        return deleteChild(child);
+        return children.contains(h);
     }
 
     public int countFamily() {
@@ -104,7 +79,7 @@ public class Family {
 
     @Override
     public String toString() {
-        String childrenArray = "\nchildren=".concat(Arrays.toString(children));
+        String childrenArray = "\nchildren=".concat(Arrays.toString(children.toArray()));
 
         return String.format(father.toString().concat("\n")
                 .concat(mother.toString().concat("\n")
