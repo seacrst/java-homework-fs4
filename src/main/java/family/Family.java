@@ -1,15 +1,13 @@
 package family;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Family {
 
     private final Human mother;
     private final Human father;
     private List<Human> children;
-    private Pet pet;
+    private final Set<Pet> pets;
 
     public Family (Human father, Human mother) {
         this.father = father;
@@ -18,12 +16,14 @@ public class Family {
         this.father.setFamily(this);
         this.mother.setFamily(this);
         this.children = new ArrayList<>();
+
+        pets = new HashSet<>();
     }
 
     public Human getMother() { return mother; }
     public Human getFather() { return father; }
     public List<Human> getChildren() { return children; }
-    public Pet getPet() { return pet; }
+    public Set<Pet> getPets() { return pets; }
 
     public void addChild(Human child) {
         child.setFamily(this);
@@ -46,30 +46,11 @@ public class Family {
     }
 
     public int countFamily() {
-        int count = 0;
-        if (father.getFamily().toString().equals(this.toString())) {
-            count++;
-            if (father.getPet() != null && father.getPet().getFamily().equals(this)) {
-                count++;
-            }
-        }
-        if (mother.getFamily().toString().equals(this.toString())) {
-            count++;
-            if (mother.getPet() != null && mother.getPet().getFamily().equals(this)) {
-                count++;
-            }
-        }
+        int parents = 0;
+        if (father != null) parents++;
+        if (mother != null) parents++;
 
-        for (Human h: children) {
-            if (h.getFamily().toString().equals(this.toString())) {
-                count++;
-                if (h.getPet() != null && h.getPet().getFamily().equals(this)) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
+        return parents + children.size() + pets.size();
     }
 
     @Override
@@ -84,7 +65,7 @@ public class Family {
         return String.format(father.toString().concat("\n")
                 .concat(mother.toString().concat("\n")
                         .concat(childrenArray).concat("\n")
-                        .concat(pet == null ? "" : pet.toString())));
+                        .concat(pets == null ? "" : pets.toString())));
     }
 
     @Override

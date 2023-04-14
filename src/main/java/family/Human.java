@@ -49,6 +49,7 @@ public abstract class Human {
     public void setFamily(Family family) {
         this.family = family;
         if (pet != null) {
+            this.family.getPets().add(pet);
             pet.setFamily(family);
         }
     }
