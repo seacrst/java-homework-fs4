@@ -56,7 +56,7 @@ public class Family {
     }
 
     public boolean deleteChild(int index) {
-        Human child = new Human();
+        Human child = new Man();
 
         if (index >= children.length) return  false;
 

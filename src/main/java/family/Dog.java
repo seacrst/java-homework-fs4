@@ -8,7 +8,7 @@ public class Dog extends Pet implements Disgusting {
         species = Species.Dog;
     }
     public Dog(String name, int age, int trickLevel, String[] habits) {
-        super(name);
+        super(name, age, trickLevel, habits);
     }
     public void respond() {
         System.out.println("Bark");

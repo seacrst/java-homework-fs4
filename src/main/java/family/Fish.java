@@ -8,7 +8,7 @@ public class Fish extends Pet {
         species = Species.Fish;
     }
     public Fish(String name, int age, int trickLevel, String[] habits) {
-        super(name);
+        super(name, age, trickLevel, habits);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class DomesticCat extends Pet implements Disgusting {
         species = Species.Cat;
     }
     public DomesticCat(String name, int age, int trickLevel, String[] habits) {
-        super(name);
+        super(name, age, trickLevel, habits);
     }
 
     @Override

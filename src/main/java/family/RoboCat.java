@@ -7,7 +7,7 @@ public class RoboCat extends Pet implements Disgusting {
         super(name);
     }
     public RoboCat(String name, int age, int trickLevel, String[] habits) {
-        super(name);
+        super(name, age, trickLevel, habits);
     }
     @Override
     public void respond() {
