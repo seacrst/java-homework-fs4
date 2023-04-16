@@ -20,5 +20,6 @@ public class Main {
         Family f = families.getFamilyById(0);
         System.out.println("FAMILY INDEX 0:");
         System.out.print(f);
+
     }
 }
